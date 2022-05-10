@@ -1,5 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Treball Final/Assets/Textures/Textures/Bush_Texture.png.meta
 guid: 31996648f19a3114f84cae06ad189378
+=======
+<<<<<<<< HEAD:Treball Final/Assets/Textures/Donald Duck Textures/Donald_Duck_UV_FBX_Body_Donald_MetallicSmoothness.tif.meta
+guid: 1cdc762d912b16c42abffb09300073a7
+========
+<<<<<<< HEAD
+guid: cfafa5bf2bec0ba49b22fded0ef4598b
+=======
+guid: 5cd35749cb7673f448a30c10ea077cd6
+>>>>>>> origin/texturafulles
+>>>>>>>> 21775c7d4ac5c4bcf56a8adb1f677f7c91f8f7eb:Treball Final/Assets/Textures/Textures/Bush_Texture.png.meta
+>>>>>>> 21775c7d4ac5c4bcf56a8adb1f677f7c91f8f7eb:Treball Final/Assets/Resources/Textures/Bush_Texture.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

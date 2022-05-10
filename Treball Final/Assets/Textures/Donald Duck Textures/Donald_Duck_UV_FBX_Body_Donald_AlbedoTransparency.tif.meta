@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Treball Final/Assets/Textures/Donald Duck Textures/Donald_Duck_UV_FBX_Body_Donald_AlbedoTransparency.tif.meta
 guid: cae7975691756e84c97c7cd06809efa5
+========
+<<<<<<< HEAD
+guid: f99151c90d2fb8b4fa49c54f98b2647b
+=======
+guid: 63d6c88c12589d84f83aa0f837866b8f
+>>>>>>> origin/texturafulles
+>>>>>>>> 21775c7d4ac5c4bcf56a8adb1f677f7c91f8f7eb:Treball Final/Assets/Textures/Textures/BigBush_Texture.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
