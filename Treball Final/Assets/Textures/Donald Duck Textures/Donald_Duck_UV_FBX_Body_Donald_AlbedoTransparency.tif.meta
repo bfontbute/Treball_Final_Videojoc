@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Treball Final/Assets/Textures/Donald Duck Textures/Donald_Duck_UV_FBX_Body_Donald_AlbedoTransparency.tif.meta
 guid: cae7975691756e84c97c7cd06809efa5
-========
-<<<<<<< HEAD
-guid: f99151c90d2fb8b4fa49c54f98b2647b
-=======
-guid: 63d6c88c12589d84f83aa0f837866b8f
->>>>>>> origin/texturafulles
->>>>>>>> 21775c7d4ac5c4bcf56a8adb1f677f7c91f8f7eb:Treball Final/Assets/Textures/Textures/BigBush_Texture.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,14 +62,38 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

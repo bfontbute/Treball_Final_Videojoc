@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{93213D6A-495E-BB01-6DFC-BAC708AD23CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StylizedGrass.Runtime", "StylizedGrass.Runtime.csproj", "{B8A44E51-A528-F300-4AF9-F3A693B3F225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StylizedGrass_Editor", "StylizedGrass_Editor.csproj", "{D911501A-A3E0-537C-0830-2365AED56B75}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{0BFDB1C3-FD27-7289-AC7D-C1B9B6F013ED}"
 EndProject
 Global
@@ -15,6 +19,14 @@ Global
 		{93213D6A-495E-BB01-6DFC-BAC708AD23CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93213D6A-495E-BB01-6DFC-BAC708AD23CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93213D6A-495E-BB01-6DFC-BAC708AD23CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A44E51-A528-F300-4AF9-F3A693B3F225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A44E51-A528-F300-4AF9-F3A693B3F225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A44E51-A528-F300-4AF9-F3A693B3F225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A44E51-A528-F300-4AF9-F3A693B3F225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D911501A-A3E0-537C-0830-2365AED56B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D911501A-A3E0-537C-0830-2365AED56B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D911501A-A3E0-537C-0830-2365AED56B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D911501A-A3E0-537C-0830-2365AED56B75}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BFDB1C3-FD27-7289-AC7D-C1B9B6F013ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BFDB1C3-FD27-7289-AC7D-C1B9B6F013ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BFDB1C3-FD27-7289-AC7D-C1B9B6F013ED}.Release|Any CPU.ActiveCfg = Release|Any CPU

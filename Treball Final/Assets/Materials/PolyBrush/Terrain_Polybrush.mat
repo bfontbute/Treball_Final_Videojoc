@@ -160,6 +160,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NormalStrength: 4.49
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0

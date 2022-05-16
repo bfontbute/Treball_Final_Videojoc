@@ -16,7 +16,7 @@ public class Player3 : MonoBehaviour
 
     public Animator anim;
 
-    [SerializeField]private float jumpButtonGracePeriod;
+    [SerializeField] private float jumpButtonGracePeriod;
 
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
@@ -25,6 +25,8 @@ public class Player3 : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
+
+    RaycastHit hit;
 
     void Start()
     {
@@ -40,7 +42,7 @@ public class Player3 : MonoBehaviour
     void Update()
     {
 
-        
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -50,6 +52,7 @@ public class Player3 : MonoBehaviour
         movementDirection.Normalize();
 
         ySpeed += Physics.gravity.y * Time.deltaTime * 1.8f;
+
 
         if (characterController.isGrounded)
         {
@@ -61,13 +64,11 @@ public class Player3 : MonoBehaviour
             {
                 jumpButtonPressedTime = Time.time;
                 DobleJump = true;
-
-
             }
 
         }
 
-        if(Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
         {
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
@@ -94,7 +95,7 @@ public class Player3 : MonoBehaviour
         else
         {
             characterController.stepOffset = 0;
-            anim.SetBool("IsGrounded", false); 
+            anim.SetBool("IsGrounded", false);
             isGrounded = false;
             Debug.Log(isGrounded);
 
@@ -115,7 +116,7 @@ public class Player3 : MonoBehaviour
             if ((isJumping && ySpeed < 0 && !anim.GetBool("IsDobleJump")) || ySpeed < -2 && !anim.GetBool("IsDobleJump"))
             {
                 anim.SetBool("IsFalling", true);
-                anim.SetBool("IsGounded", false);
+                //anim.SetBool("IsGounded", false);
             }
         }
 
@@ -141,9 +142,7 @@ public class Player3 : MonoBehaviour
         }
         else
         {
-
             anim.SetBool("IsMoving", false);
-            //Idle2();
         }
     }
 
@@ -157,13 +156,22 @@ public class Player3 : MonoBehaviour
     private void Walk2()
     {
         anim.SetFloat("Moviment2", 0.5f);
-        
+
     }
     private void Run2()
     {
         anim.SetFloat("Moviment2", 1f);
-      
+
 
     }
+    void OnTriggerEnter(Collider other)
+    {
 
+        if (other.gameObject.layer == 8)
+        {
+            Debug.Log("Grouding-Collider");
+            isGrounded = true;
+        }
+
+    }
 }
