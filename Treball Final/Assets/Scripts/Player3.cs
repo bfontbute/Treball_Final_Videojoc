@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player3 : MonoBehaviour
 {
+    [Header("Animation")]
+    private const string IsFallingBool = "IsFalling";
+    private const string IsGroundedBool = "IsGrounded";
+    private const string IsJumpingBool = "IsJumping";
+    private const string IsDobleJumpingBool = "IsDobleJump";
+    private const string IsMovingBool = "IsMoving";
+    public Animator anim;
+
+    [Header ("Player")]
     public float speed;
     public float rotationSpeed;
     public float jumpSpeed;
-
     private bool DobleJump;
 
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
 
-    public Animator anim;
+    
 
     [SerializeField] private float jumpButtonGracePeriod;
 
@@ -28,15 +37,15 @@ public class Player3 : MonoBehaviour
 
     RaycastHit hit;
 
+    [Header("PLayerStats")]
+    int GearPoints = 0;
+    public Text TextGearPoints; 
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
-
         anim = GetComponentInChildren<Animator>();
-
-
-
     }
 
     void Update()
@@ -56,9 +65,7 @@ public class Player3 : MonoBehaviour
 
         if (characterController.isGrounded)
         {
-
             lastGroundedTime = Time.time;
-
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -73,39 +80,41 @@ public class Player3 : MonoBehaviour
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
             DobleJump = true;
-            anim.SetBool("IsGrounded", true);
+            anim.SetBool(IsGroundedBool, true);
             isGrounded = true;
-            anim.SetBool("IsJumping", false);
+            anim.SetBool(IsJumpingBool, false);
             isJumping = false;
-            anim.SetBool("IsFalling", false);
-            anim.SetBool("IsDobleJump", false);
+            anim.SetBool(IsJumpingBool, false);
+            anim.SetBool(IsDobleJumpingBool, false);
 
             if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
             {
                 ySpeed = jumpSpeed;
-                anim.SetBool("IsJumping", true);
-                anim.SetBool("IsGrounded", false);
+                anim.SetBool(IsJumpingBool, true);
+                anim.SetBool(IsGroundedBool, false);
                 isJumping = true;
                 DobleJump = true;
                 lastGroundedTime = null;
                 jumpButtonPressedTime = null;
 
             }
+
+            Falling();
         }
         else
         {
             characterController.stepOffset = 0;
-            anim.SetBool("IsGrounded", false);
+            anim.SetBool(IsGroundedBool, false);
             isGrounded = false;
             Debug.Log(isGrounded);
 
             if (Input.GetButtonDown("Jump") && DobleJump == true)
             {
                 ySpeed = jumpSpeed;
-                anim.SetBool("IsJumping", false);
-                anim.SetBool("IsDobleJump", true);
-                anim.SetBool("IsFalling", false);
-                anim.SetBool("IsGounded", false);
+                anim.SetBool(IsJumpingBool, false);
+                anim.SetBool(IsDobleJumpingBool, true);
+                anim.SetBool(IsJumpingBool, false);
+                anim.SetBool(IsGroundedBool, false);
                 isJumping = true;
                 DobleJump = false;
                 lastGroundedTime = null;
@@ -113,27 +122,30 @@ public class Player3 : MonoBehaviour
 
             }
 
-            if ((isJumping && ySpeed < 0 && !anim.GetBool("IsDobleJump")) || ySpeed < -2 && !anim.GetBool("IsDobleJump"))
-            {
-                anim.SetBool("IsFalling", true);
-                //anim.SetBool("IsGounded", false);
-            }
+            Falling();
         }
 
 
+        void Falling()
+        {
 
+            if ((isJumping && ySpeed < 0 && !anim.GetBool(IsDobleJumpingBool)) || ySpeed < -2 && !anim.GetBool(IsDobleJumpingBool))
+            {
+                anim.SetBool(IsJumpingBool, true);
+            }
+            
+        }
 
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
 
         characterController.Move(velocity * Time.deltaTime);
-        Debug.Log(magnitude);
 
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
-            anim.SetBool("IsMoving", true);
+            anim.SetBool(IsMovingBool, true);
 
             anim.SetFloat("Moviment2", magnitude);
 
@@ -142,17 +154,31 @@ public class Player3 : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsMoving", false);
+            anim.SetBool(IsMovingBool, false);
         }
     }
 
-    /*
-    private void Idle2()
+    //-------------------------------------------------------------------------------------INTERACTION-------TRIGGER--------------------------
+    private void OnTriggerEnter(Collider other)
     {
-        anim.SetFloat("Moviment2", 0f);
-
+        if (other.gameObject.layer == 9)
+        {
+            Destroy(other.gameObject);
+            Gears();
+        }
     }
-    */
+
+
+
+    //OnTriggerEnter Layer 9
+    public void Gears()
+    {
+        GearPoints += 1;
+        TextGearPoints.text = GearPoints.ToString();
+        
+    }
+
+
     private void Walk2()
     {
         anim.SetFloat("Moviment2", 0.5f);
@@ -162,16 +188,6 @@ public class Player3 : MonoBehaviour
     {
         anim.SetFloat("Moviment2", 1f);
 
-
-    }
-    void OnTriggerEnter(Collider other)
-    {
-
-        if (other.gameObject.layer == 8)
-        {
-            Debug.Log("Grouding-Collider");
-            isGrounded = true;
-        }
 
     }
 }

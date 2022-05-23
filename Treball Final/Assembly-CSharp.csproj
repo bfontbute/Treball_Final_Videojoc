@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Player2.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\GameController\GameController.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Player3.cs" />
+    <Compile Include="Assets\Scripts\GameController\TimerController.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\MoveInCircle.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\FreeCamera.cs" />
