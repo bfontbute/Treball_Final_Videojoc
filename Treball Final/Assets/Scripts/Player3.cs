@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player3 : MonoBehaviour
@@ -21,7 +24,7 @@ public class Player3 : MonoBehaviour
     private float ySpeed;
     private float originalStepOffset;
 
-    public static Vector3 lastCeckPointPos = new Vector3 (55, 5, 16);
+    public static Vector3 lastCeckPointPos = new Vector3(55, 5, 16);
 
 
 
@@ -178,6 +181,7 @@ public class Player3 : MonoBehaviour
 
         if (other.gameObject.layer == 10)
         {
+            Destroy(other.gameObject);
             HealthPlus();
         }
     }
@@ -211,9 +215,9 @@ public class Player3 : MonoBehaviour
     public void HealthLoose()
     {
 
-        if (Health == 0)
+        if (Health == 1)
         {
-
+            SceneManager.LoadScene("MainMenu");
         }
         else
         {
