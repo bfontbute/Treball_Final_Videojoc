@@ -2,7 +2,6 @@
 //Staggart Creations (http://staggart.xyz)
 //Copyright protected under Unity Asset Store EULA
 
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;

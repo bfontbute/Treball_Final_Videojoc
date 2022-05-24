@@ -2,7 +2,6 @@
 //Staggart Creations (http://staggart.xyz)
 //Copyright protected under Unity Asset Store EULA
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace StylizedGrass
     public static class PipelineUtilities
     {
         private const string renderDataListFieldName = "m_RendererDataList";
-        
+
 #if URP
         /// <summary>
         /// Retrieves a ForwardRenderer asset in the project, based on name
@@ -46,7 +45,7 @@ namespace StylizedGrass
             return null;
 #endif
         }
-        
+
         /// <summary>
         /// Checks if a ForwardRenderer has been assigned to the pipeline asset, if not it is added
         /// </summary>
@@ -58,12 +57,12 @@ namespace StylizedGrass
                 Debug.LogError("Pass is null");
                 return;
             }
-            
+
             BindingFlags bindings = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
 
             ScriptableRendererData[] m_rendererDataList = (ScriptableRendererData[])typeof(UniversalRenderPipelineAsset).GetField(renderDataListFieldName, bindings).GetValue(UniversalRenderPipeline.asset);
             bool isPresent = false;
-            
+
             for (int i = 0; i < m_rendererDataList.Length; i++)
             {
                 if (m_rendererDataList[i] == pass) isPresent = true;
@@ -78,7 +77,7 @@ namespace StylizedGrass
                 //Debug.Log("The " + AssetName + " ScriptableRendererFeature is assigned to the pipeline asset");
             }
         }
-        
+
         private static void AddRendererToPipeline(ScriptableRendererData pass)
         {
             if (pass == null) return;
@@ -102,14 +101,14 @@ namespace StylizedGrass
         public static void RemoveRendererFromPipeline(ScriptableRendererData pass)
         {
             if (pass == null) return;
-            
+
             BindingFlags bindings = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
 
             ScriptableRendererData[] m_rendererDataList = (ScriptableRendererData[])typeof(UniversalRenderPipelineAsset).GetField(renderDataListFieldName, bindings).GetValue(UniversalRenderPipeline.asset);
             List<ScriptableRendererData> rendererDataList = new List<ScriptableRendererData>(m_rendererDataList);
-            
-            if(rendererDataList.Contains(pass)) rendererDataList.Remove((pass));
-            
+
+            if (rendererDataList.Contains(pass)) rendererDataList.Remove((pass));
+
             typeof(UniversalRenderPipelineAsset).GetField(renderDataListFieldName, bindings).SetValue(UniversalRenderPipeline.asset, rendererDataList.ToArray());
         }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace StylizedGrass
@@ -32,7 +30,7 @@ namespace StylizedGrass
         {
             serializedObject.Update();
 
-            if(GUILayout.Button("Set as active", GUILayout.MaxWidth(150f)))
+            if (GUILayout.Button("Set as active", GUILayout.MaxWidth(150f)))
             {
                 colorMap.SetActive();
             }
@@ -49,7 +47,7 @@ namespace StylizedGrass
             {
                 EditorGUILayout.PropertyField(customTex);
             }
-            if(colorMap.texture == null)
+            if (colorMap.texture == null)
             {
                 EditorGUILayout.HelpBox("No texture has been saved to this asset. Use the ColorMapRenderer component to do this", MessageType.Error);
             }

@@ -3,12 +3,9 @@
 //Copyright protected under Unity Asset Store EULA
 //#define DEFAULT_GUI
 
-using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 #if URP
-using UnityEditor.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 #endif
@@ -96,11 +93,11 @@ namespace StylizedGrass
         private void OnEnable()
         {
             renderingSection = new StylizedGrassGUI.Material.Section(materialEditor, "RENDERING", "Rendering");
-            mapsSection = new StylizedGrassGUI.Material.Section(materialEditor,"MAPS", "Main maps");
-            colorSection = new StylizedGrassGUI.Material.Section(materialEditor,"COLOR", "Color");
-            shadingSection = new StylizedGrassGUI.Material.Section(materialEditor,"SHADING", "Shading");
-            verticesSection = new StylizedGrassGUI.Material.Section(materialEditor,"VERTICES", "Vertices");
-            windSection = new StylizedGrassGUI.Material.Section(materialEditor,"WIND", "Wind");
+            mapsSection = new StylizedGrassGUI.Material.Section(materialEditor, "MAPS", "Main maps");
+            colorSection = new StylizedGrassGUI.Material.Section(materialEditor, "COLOR", "Color");
+            shadingSection = new StylizedGrassGUI.Material.Section(materialEditor, "SHADING", "Shading");
+            verticesSection = new StylizedGrassGUI.Material.Section(materialEditor, "VERTICES", "Vertices");
+            windSection = new StylizedGrassGUI.Material.Section(materialEditor, "WIND", "Wind");
         }
         public void FindProperties(MaterialProperty[] props)
         {
@@ -157,11 +154,11 @@ namespace StylizedGrass
             shadowBiasCorrection = FindProperty("_ShadowBiasCorrection", props);
             _Billboard = FindProperty("_Billboard", props);
             _AngleFading = FindProperty("_AngleFading", props);
-            if(targetMat.HasProperty("_CurvedWorldBendSettings")) _CurvedWorldBendSettings = FindProperty("_CurvedWorldBendSettings", props);
+            if (targetMat.HasProperty("_CurvedWorldBendSettings")) _CurvedWorldBendSettings = FindProperty("_CurvedWorldBendSettings", props);
 
-            unlitLightingContent = new GUIContent("None", 
+            unlitLightingContent = new GUIContent("None",
                 "No lighting is applied, grass rendered purely with its base color");
-            
+
             simpleLightingContent = new GUIContent("Simple", "" +
                "Diffuse shading\n\n" +
                "" +
@@ -195,7 +192,7 @@ namespace StylizedGrass
 
             //TODO: Draw overlay for help button
         }
-        
+
         //https://github.com/Unity-Technologies/ScriptableRenderPipeline/blob/648184ec8405115e2fcf4ad3023d8b16a191c4c7/com.unity.render-pipelines.universal/Editor/ShaderGUI/BaseShaderGUI.cs
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
         {
@@ -233,7 +230,7 @@ namespace StylizedGrass
             DrawRendering();
             DrawMaps();
             DrawColor();
-            if(lightingMode.floatValue > 0) DrawShading();
+            if (lightingMode.floatValue > 0) DrawShading();
             DrawVertices();
             DrawWind();
 
@@ -303,7 +300,7 @@ namespace StylizedGrass
             if (bumpMap.textureValue) CoreUtils.SetKeyword(targetMat, "_NORMALMAP", bumpMap.textureValue);
             if (targetMat.HasProperty("_LightingMode")) CoreUtils.SetKeyword(targetMat, "_SIMPLE_LIGHTING", targetMat.GetFloat("_LightingMode") == 1.0f);
             if (targetMat.HasProperty("_LightingMode")) CoreUtils.SetKeyword(targetMat, "_ADVANCED_LIGHTING", targetMat.GetFloat("_LightingMode") == 2.0f);
-            
+
             if (targetMat.HasProperty("_ReceiveShadows")) CoreUtils.SetKeyword(targetMat, "_RECEIVE_SHADOWS_OFF", targetMat.GetFloat("_ReceiveShadows") == 0.0f);
             if (targetMat.HasProperty("_EnvironmentReflections")) CoreUtils.SetKeyword(targetMat, "_ENVIRONMENTREFLECTIONS_OFF", targetMat.GetFloat("_EnvironmentReflections") == 1.0f);
             if (targetMat.HasProperty("_Scalemap")) CoreUtils.SetKeyword(targetMat, "_SCALEMAP", targetMat.GetFloat("_Scalemap") == 1.0f);
@@ -327,7 +324,7 @@ namespace StylizedGrass
             if (EditorGUILayout.BeginFadeGroup(renderingSection.anim.faded))
             {
                 EditorGUILayout.Space();
-                
+
                 var cullingMode = (int)culling.floatValue;
 
                 cullingMode = EditorGUILayout.Popup("Culling", cullingMode, new string[] { "Double-sided", "Front-faces", "Back-faces" });
@@ -350,9 +347,9 @@ namespace StylizedGrass
                 materialEditor.ShaderProperty(alphaToCoverage, new GUIContent("Alpha to coverage", "Reduces aliasing when using MSAA"));
                 if (alphaToCoverage.floatValue > 0 && UniversalRenderPipeline.asset.msaaSampleCount == 1) EditorGUILayout.HelpBox("MSAA is disabled, alpha to coverage will have no effect", MessageType.None);
 
-                UI.Material.Toggle(_Billboard, tooltip:"Force the Z-axis of the mesh to face the camera (Requires the GrassBillboardQuad mesh!)");
-                UI.Material.Toggle(_AngleFading, tooltip:"Fadeout the mesh's facing that aren't facing the camera using dithering)");
-                
+                UI.Material.Toggle(_Billboard, tooltip: "Force the Z-axis of the mesh to face the camera (Requires the GrassBillboardQuad mesh!)");
+                UI.Material.Toggle(_AngleFading, tooltip: "Fadeout the mesh's facing that aren't facing the camera using dithering)");
+
                 enableDistFade = EditorGUILayout.Toggle(new GUIContent("Distance fading", "Reduces the alpha clipping based on camera distance." +
                     "\n\nNote that this does not improve performance, only pixels are being hidden, meshes are still being rendered, " +
                     "best to match these settings to your maximum grass draw distance"), enableDistFade);
@@ -366,7 +363,7 @@ namespace StylizedGrass
                 EditorGUILayout.Space();
             }
             EditorGUILayout.EndFadeGroup();
-            
+
         }
 
         private void DrawMaps()
@@ -377,11 +374,11 @@ namespace StylizedGrass
             if (EditorGUILayout.BeginFadeGroup(mapsSection.anim.faded))
             {
                 EditorGUILayout.Space();
-                
+
                 materialEditor.TextureProperty(baseMap, "Texture (A=Alpha)");
                 materialEditor.ShaderProperty(alphaCutoffProp, "Alpha clipping");
                 materialEditor.TextureProperty(bumpMap, "Normal map");
-                
+
                 EditorGUILayout.Space();
             }
             EditorGUILayout.EndFadeGroup();
@@ -395,21 +392,21 @@ namespace StylizedGrass
             if (EditorGUILayout.BeginFadeGroup(colorSection.anim.faded))
             {
                 EditorGUILayout.Space();
-                
-                UI.Material.DrawColorField(color, true, tooltip:"This color is multiplied with the texture. Use a white texture to color the grass by this value entirely.");
-                UI.Material.DrawColorField(hueColor, false, tooltip:"Every object will receive a random color between this color, and the main color. The alpha channel controls the intensity");
+
+                UI.Material.DrawColorField(color, true, tooltip: "This color is multiplied with the texture. Use a white texture to color the grass by this value entirely.");
+                UI.Material.DrawColorField(hueColor, false, tooltip: "Every object will receive a random color between this color, and the main color. The alpha channel controls the intensity");
 
                 EditorGUILayout.Space();
 
-                UI.Material.DrawSlider(colorMapStrength, tooltip:"Controls the much the color map influences the material. Overrides any other colors");
+                UI.Material.DrawSlider(colorMapStrength, tooltip: "Controls the much the color map influences the material. Overrides any other colors");
                 if (!GrassColorMap.Active) EditorGUILayout.HelpBox("No color map is currently active", MessageType.None);
-                UI.Material.DrawSlider(colorMapHeight, tooltip:"Controls which part of the mesh is affected, from bottom to top");
+                UI.Material.DrawSlider(colorMapHeight, tooltip: "Controls which part of the mesh is affected, from bottom to top");
 
                 EditorGUILayout.Space();
 
-                UI.Material.DrawSlider(ambientOcclusion, tooltip:"Darkens the mesh based on the red vertex color painted into the mesh");
-                UI.Material.DrawSlider(vertexDarkening, tooltip:"Gives each vertex a random darker tint. Use in moderation to slightly break up visual repetition");
-                
+                UI.Material.DrawSlider(ambientOcclusion, tooltip: "Darkens the mesh based on the red vertex color painted into the mesh");
+                UI.Material.DrawSlider(vertexDarkening, tooltip: "Gives each vertex a random darker tint. Use in moderation to slightly break up visual repetition");
+
                 EditorGUILayout.Space();
 
             }
@@ -427,17 +424,17 @@ namespace StylizedGrass
                 if (lightingMode.floatValue == 2f)
                 {
                     //materialEditor.ShaderProperty(environmentReflections, environmentReflections.displayName);
-                    UI.Material.Toggle(environmentReflections, tooltip:"Enables reflections from skybox and reflection probes");
+                    UI.Material.Toggle(environmentReflections, tooltip: "Enables reflections from skybox and reflection probes");
                     if (environmentReflections.floatValue == 1f && RenderSettings.defaultReflectionMode == DefaultReflectionMode.Custom && RenderSettings.customReflection == null)
                     {
                         EditorGUILayout.HelpBox("Environment reflection source is set to \"Custom\" but no cubemap is assigned. ", MessageType.Warning);
 
                     }
-                    UI.Material.DrawSlider(smoothness, tooltip:"Controls how strongly the skybox and reflection probes affect the material (similar to PBR smoothness)");
-        
+                    UI.Material.DrawSlider(smoothness, tooltip: "Controls how strongly the skybox and reflection probes affect the material (similar to PBR smoothness)");
+
 
                 }
-                UI.Material.DrawSlider(translucency, tooltip:"Simulates sun light passing through the grass. Most noticeable at glancing or low sun angles");
+                UI.Material.DrawSlider(translucency, tooltip: "Simulates sun light passing through the grass. Most noticeable at glancing or low sun angles");
                 EditorGUILayout.Space();
 
             }
@@ -452,35 +449,35 @@ namespace StylizedGrass
             if (EditorGUILayout.BeginFadeGroup(verticesSection.anim.faded))
             {
                 EditorGUILayout.Space();
-                
-                 if (targetMat.HasProperty("_CurvedWorldBendSettings"))
-                    {
-                        EditorGUILayout.LabelField("Curved World 2020", EditorStyles.boldLabel);
-                        materialEditor.ShaderProperty(_CurvedWorldBendSettings, _CurvedWorldBendSettings.displayName);
-                        EditorGUILayout.Space();
-                    }
 
-                    UI.Material.DrawSlider(perspCorrection, tooltip:"The amount by which the grass is gradually bent away from the camera as it looks down. Useful for better coverage in top-down perspectives");
+                if (targetMat.HasProperty("_CurvedWorldBendSettings"))
+                {
+                    EditorGUILayout.LabelField("Curved World 2020", EditorStyles.boldLabel);
+                    materialEditor.ShaderProperty(_CurvedWorldBendSettings, _CurvedWorldBendSettings.displayName);
+                    EditorGUILayout.Space();
+                }
 
-                    using (new EditorGUILayout.HorizontalScope())
-                    {
-                        EditorGUILayout.LabelField("Bend Mode", GUILayout.Width(EditorGUIUtility.labelWidth));
-                        bendMode.floatValue = (float)GUILayout.Toolbar((int)bendMode.floatValue,
-                            new GUIContent[] { new GUIContent("Per-vertex", "Bending is applied on a per-vertex basis"), new GUIContent("Whole object", "Applied to all vertices at once, use this for plants/flowers to avoid distorting the mesh") }
-                            );
-                    }
-                    UI.Material.DrawSlider(bendPushStrength, tooltip:"The amount of pushing the material should receive by Grass Benders");
-                    UI.Material.DrawSlider(bendFlattenStrength, tooltip:"A multiplier for how much the material is flattened by Grass Benders");
+                UI.Material.DrawSlider(perspCorrection, tooltip: "The amount by which the grass is gradually bent away from the camera as it looks down. Useful for better coverage in top-down perspectives");
 
-                    if (GrassColorMap.Active && GrassColorMap.Active.hasScalemap == false) EditorGUILayout.HelpBox("Active color map has no scale information", MessageType.None);
-                    if (!GrassColorMap.Active) EditorGUILayout.HelpBox("No color map is currently active", MessageType.None);
-                    materialEditor.ShaderProperty(scaleMap, new GUIContent("Apply scale map", "Enable scaling through terrain-layer heightmap"));
-                    if (scaleMap.floatValue == 1)
-                    {
-                        EditorGUI.indentLevel++;
-                        UI.Material.DrawVector3(scalemapInfluence, "Scale influence", "Controls the scale strength of the heightmap per axis");
-                        EditorGUI.indentLevel--;
-                    }
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.LabelField("Bend Mode", GUILayout.Width(EditorGUIUtility.labelWidth));
+                    bendMode.floatValue = (float)GUILayout.Toolbar((int)bendMode.floatValue,
+                        new GUIContent[] { new GUIContent("Per-vertex", "Bending is applied on a per-vertex basis"), new GUIContent("Whole object", "Applied to all vertices at once, use this for plants/flowers to avoid distorting the mesh") }
+                        );
+                }
+                UI.Material.DrawSlider(bendPushStrength, tooltip: "The amount of pushing the material should receive by Grass Benders");
+                UI.Material.DrawSlider(bendFlattenStrength, tooltip: "A multiplier for how much the material is flattened by Grass Benders");
+
+                if (GrassColorMap.Active && GrassColorMap.Active.hasScalemap == false) EditorGUILayout.HelpBox("Active color map has no scale information", MessageType.None);
+                if (!GrassColorMap.Active) EditorGUILayout.HelpBox("No color map is currently active", MessageType.None);
+                materialEditor.ShaderProperty(scaleMap, new GUIContent("Apply scale map", "Enable scaling through terrain-layer heightmap"));
+                if (scaleMap.floatValue == 1)
+                {
+                    EditorGUI.indentLevel++;
+                    UI.Material.DrawVector3(scalemapInfluence, "Scale influence", "Controls the scale strength of the heightmap per axis");
+                    EditorGUI.indentLevel--;
+                }
 
                 EditorGUILayout.Space();
 
@@ -496,39 +493,39 @@ namespace StylizedGrass
             if (EditorGUILayout.BeginFadeGroup(windSection.anim.faded))
             {
                 EditorGUILayout.Space();
-                
+
                 EditorGUILayout.LabelField("Wind", EditorStyles.boldLabel);
-                    if (windParams.x > 0f) EditorGUILayout.HelpBox("Wind strength is mutliplied by " + Shader.GetGlobalFloat("_WindStrength").ToString() + " (Set by external script)", MessageType.Info);
-                    if (natureRendererParams.w > 0f) EditorGUILayout.HelpBox("Nature Renderer wind strength and speed are added to these values", MessageType.Info);
+                if (windParams.x > 0f) EditorGUILayout.HelpBox("Wind strength is mutliplied by " + Shader.GetGlobalFloat("_WindStrength").ToString() + " (Set by external script)", MessageType.Info);
+                if (natureRendererParams.w > 0f) EditorGUILayout.HelpBox("Nature Renderer wind strength and speed are added to these values", MessageType.Info);
 
-                    UI.Material.DrawSlider(windAmbientStrength, tooltip:"The amount of wind that is applied without gusting");
-                    UI.Material.DrawSlider(windSpeed, tooltip:"The speed the wind and gusting moves at");
-                    UI.Material.DrawVector3(windDirection, windDirection.displayName, null);
-                    UI.Material.DrawSlider(windSwinging, tooltip:"Controls the amount the grass is able to spring back against the wind direction");
+                UI.Material.DrawSlider(windAmbientStrength, tooltip: "The amount of wind that is applied without gusting");
+                UI.Material.DrawSlider(windSpeed, tooltip: "The speed the wind and gusting moves at");
+                UI.Material.DrawVector3(windDirection, windDirection.displayName, null);
+                UI.Material.DrawSlider(windSwinging, tooltip: "Controls the amount the grass is able to spring back against the wind direction");
 
-                    EditorGUILayout.Space();
+                EditorGUILayout.Space();
 
-                    EditorGUILayout.LabelField("Randomization", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("Randomization", EditorStyles.boldLabel);
 
-                    UI.Material.DrawSlider(windObjectRand, "Per-object", "Adds a per-object offset, making each object move randomly rather than in unison");
-                    UI.Material.DrawSlider(windVertexRand, "Per-vertex", "Adds a per-vertex offset");
-                    UI.Material.DrawSlider(windRandStrength, tooltip:"Gives each object a random wind strength. This is useful for breaking up repetition and gives the impression of turbulence");
+                UI.Material.DrawSlider(windObjectRand, "Per-object", "Adds a per-object offset, making each object move randomly rather than in unison");
+                UI.Material.DrawSlider(windVertexRand, "Per-vertex", "Adds a per-vertex offset");
+                UI.Material.DrawSlider(windRandStrength, tooltip: "Gives each object a random wind strength. This is useful for breaking up repetition and gives the impression of turbulence");
 
-                    EditorGUILayout.Space();
+                EditorGUILayout.Space();
 
-                    EditorGUILayout.LabelField("Gusting", EditorStyles.boldLabel);
-                    materialEditor.TexturePropertySingleLine(new GUIContent("Gust texture (Grayscale)"), windGustTex);
+                EditorGUILayout.LabelField("Gusting", EditorStyles.boldLabel);
+                materialEditor.TexturePropertySingleLine(new GUIContent("Gust texture (Grayscale)"), windGustTex);
 
-                    UI.Material.DrawSlider(windGustStrength, "Strength", "Gusting add wind strength based on the gust texture, which moves over the grass");
-                    UI.Material.DrawSlider(windGustFreq, "Frequency", "Controls the tiling of the gusting texture, essentially setting the size of the gusting waves");
-                    UI.Material.DrawSlider(windGustTint, "Color tint", "Uses the gusting texture to add a brighter tint based on the gusting strength");
-                    
+                UI.Material.DrawSlider(windGustStrength, "Strength", "Gusting add wind strength based on the gust texture, which moves over the grass");
+                UI.Material.DrawSlider(windGustFreq, "Frequency", "Controls the tiling of the gusting texture, essentially setting the size of the gusting waves");
+                UI.Material.DrawSlider(windGustTint, "Color tint", "Uses the gusting texture to add a brighter tint based on the gusting strength");
+
                 EditorGUILayout.Space();
 
             }
             EditorGUILayout.EndFadeGroup();
         }
-        
+
         private void SwitchSection(UI.Material.Section s)
         {
             /*

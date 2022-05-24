@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class TimerController : MonoBehaviour
     private bool timerGoing;
 
     private float elapsedTime;
-    
+
     public float startTime;
 
     private void Awake()
@@ -34,7 +33,7 @@ public class TimerController : MonoBehaviour
         startTime = Time.time;
         elapsedTime = 0f;
 
-        StartCoroutine(UpdateTimer()); 
+        StartCoroutine(UpdateTimer());
     }
 
     public void EndTimer()

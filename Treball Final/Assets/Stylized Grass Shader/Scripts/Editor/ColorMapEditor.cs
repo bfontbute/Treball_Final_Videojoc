@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -22,7 +21,7 @@ namespace StylizedGrass
         private static DefaultReflectionMode reflectionMode;
         private static bool fogEnabled;
         private static Color ambientColor;
-        
+
         private static Material splatExtractionMat;
         private static Material unlitTerrainMat;
 
@@ -57,7 +56,7 @@ namespace StylizedGrass
             }
 
             renderer.colorMap.overrideTexture = false;
-            
+
             terrains.Clear();
             foreach (GameObject item in renderer.terrainObjects)
             {
@@ -269,7 +268,7 @@ namespace StylizedGrass
                 );
 
             renderer.renderCam.transform.localEulerAngles = new Vector3(90, 0, 0);
-            
+
 #if URP
             UniversalAdditionalCameraData camData = renderer.renderCam.gameObject.AddComponent<UniversalAdditionalCameraData>();
             camData.renderShadows = false;
@@ -331,8 +330,8 @@ namespace StylizedGrass
                 if (terrains.Count > 0)
                 {
                     originalTerrainMat = terrains[0].materialTemplate;
-                    
-                    if(!unlitTerrainMat) unlitTerrainMat = new Material(Shader.Find("Hidden/TerrainAlbedo"));
+
+                    if (!unlitTerrainMat) unlitTerrainMat = new Material(Shader.Find("Hidden/TerrainAlbedo"));
 
                     foreach (Terrain t in terrains)
                     {
@@ -391,7 +390,7 @@ namespace StylizedGrass
             Texture2D render = new Texture2D(renderer.resolution, renderer.resolution, TextureFormat.ARGB32, false, true);
             render.ReadPixels(new Rect(0, 0, renderer.resolution, renderer.resolution), 0, 0);
             render.Apply();
-            
+
             //DTX5 not supported on mobile which Texture2D.Compress will use if the alpha channel is used (scale map)
             EditorUtility.CompressTexture(render, renderer.layerScaleSettings.Count > 0 ? TextureFormat.DXT5 : TextureFormat.DXT1, TextureCompressionQuality.Normal);
             render.name = renderer.colorMap.name;
@@ -425,11 +424,11 @@ namespace StylizedGrass
             DestroyImmediate(rt);
             DestroyImmediate(renderer.renderCam.gameObject);
             renderer.renderCam = null;
-            
+
 #if URP
             PipelineUtilities.RemoveRendererFromPipeline(renderer.renderData);
 #endif
-            
+
             if (isTerrain)
             {
                 //Restore materials

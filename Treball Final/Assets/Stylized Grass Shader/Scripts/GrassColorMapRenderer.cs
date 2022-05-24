@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 #if UNITY_EDITOR
-using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 using UnityEngine;
-using UnityEngine.Rendering;
 #if URP
 using UnityEngine.Rendering.Universal;
 #endif
@@ -20,10 +16,10 @@ namespace StylizedGrass
     public class GrassColorMapRenderer : MonoBehaviour
     {
         public static GrassColorMapRenderer Instance;
-        
-        #if URP
+
+#if URP
         public UniversalRendererData renderData;
-        #endif
+#endif
 
         public GrassColorMap colorMap;
         [Tooltip("These objects can be Unity Terrains or custom Mesh Terrains. Their size can be used to automatically fit the render area")]
@@ -36,7 +32,7 @@ namespace StylizedGrass
         public bool useLayers = false;
         [Tooltip("Enable this option if you're using a custom terrain shader which greatly alters the terrain color (eg. global noise).\n\n" +
                  "When disabled, the terrains are temporarily rendered using an Unlit shader (based on the default Unity terrain shader)\n\nThis only applies to Unity terrain, not meshes")]
-        
+
         public bool thirdPartyShader = false;
         public Camera renderCam;
         [NonSerialized]

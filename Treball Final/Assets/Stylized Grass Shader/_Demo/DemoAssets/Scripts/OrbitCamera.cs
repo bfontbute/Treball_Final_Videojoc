@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace StylizedGrassDemo
 {
@@ -56,7 +55,7 @@ namespace StylizedGrassDemo
                 distance *= (1 - 0.1f * Input.GetAxis("Mouse Y"));
             }
 
-            if(enableMouse) distance *= (1 - 1 * Input.GetAxis("Mouse ScrollWheel"));
+            if (enableMouse) distance *= (1 - 1 * Input.GetAxis("Mouse ScrollWheel"));
 
             Vector3 targetPoint = pivot.position;
             transform.position = Vector3.Lerp(transform.position, targetPoint, Time.deltaTime * moveSmoothSpeed);

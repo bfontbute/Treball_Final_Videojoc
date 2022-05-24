@@ -3,12 +3,10 @@
 //Copyright protected under Unity Asset Store EULA
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 #if URP
 using UnityEngine.Rendering.Universal;
 #endif
@@ -268,7 +266,7 @@ namespace StylizedGrass
                 PipelineUtilities.ValidatePipelineRenderers(bendRenderer);
 #endif
 
-               PipelineUtilities.AssignRendererToCamera(camData, bendRenderer);
+                PipelineUtilities.AssignRendererToCamera(camData, bendRenderer);
             }
             else
             {
@@ -343,7 +341,7 @@ namespace StylizedGrass
                 //Snap position to texels to avoid pixel swimming artifacts
                 targetPosition = SnapToGrid(actualFollowTarget.transform.position, (renderExtends * 2f) / resolution);
                 targetPosition.y += renderExtends;
-                
+
                 renderCam.transform.position = targetPosition;
             }
             else
@@ -365,7 +363,7 @@ namespace StylizedGrass
             uv.z = renderExtends * 2;
             uv.w = 1f; //Enable bend map sampling in shader
         }
-        
+
         private static Vector3 SnapToGrid(Vector3 pos, float cellSize)
         {
             return new Vector3(SnapToGrid(pos.x, cellSize), SnapToGrid(pos.y, cellSize), SnapToGrid(pos.z, cellSize));

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace StylizedGrass
 {
@@ -36,7 +34,7 @@ namespace StylizedGrass
         {
             get
             {
-                if(!_MeshMaterial)
+                if (!_MeshMaterial)
                 {
                     _MeshMaterial = new Material(Shader.Find(MESH_SHADER_NAME));
                     _MeshMaterial.enableInstancing = true;
@@ -60,11 +58,11 @@ namespace StylizedGrass
         private static GradientColorKey[] colorKeys = new GradientColorKey[GRADIENT_ACCURACY];
         private static GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
         private static Gradient m_Gradient = new Gradient();
-        
+
         public static Gradient GetGradient(AnimationCurve curve)
         {
             if (curve == null) curve = AnimationCurve.Linear(0f, 1f, 1f, 0f);
-            
+
             for (int i = 0; i < GRADIENT_ACCURACY; i++)
             {
                 float s = (float)i / (float)GRADIENT_ACCURACY;

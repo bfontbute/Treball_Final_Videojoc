@@ -3,7 +3,6 @@
 //Copyright protected under Unity Asset Store EULA
 
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.Rendering;
 #if URP
@@ -33,14 +32,14 @@ namespace StylizedGrass
 
             private Material m_MaskMat;
             private const string MASK_SHADER_NAME = "Hidden/Nature/Grass BendRenderer";
-            
+
             private bool enableEdgeMasking;
             private bool trailEnabled;
 
             public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
             {
                 if (!m_MaskMat) m_MaskMat = new Material(Shader.Find(MASK_SHADER_NAME));
-                
+
                 enableEdgeMasking = false;
                 if (StylizedGrassRenderer.Instance)
                 {
@@ -55,7 +54,7 @@ namespace StylizedGrass
 
                 //Note: may conflict with existing property blocks but this is an edge case
                 if (props == null) props = new MaterialPropertyBlock();
-                if(profilerSampler == null) profilerSampler = new ProfilingSampler(profilerTag);
+                if (profilerSampler == null) profilerSampler = new ProfilingSampler(profilerTag);
             }
 
             private MeshRenderer m_MeshRenderer;
@@ -63,7 +62,7 @@ namespace StylizedGrass
             private LineRenderer m_LineRenderer;
             private ParticleSystemRenderer m_ParticleRenderer;
             public ParticleSystem.ColorOverLifetimeModule m_ParticleRendererGrad;
-            
+
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
             {
                 var cmd = CommandBufferPool.Get(profilerSampler.name);
@@ -164,18 +163,18 @@ namespace StylizedGrass
 
                             if (b.benderType == GrassBenderBase.BenderType.Line)
                             {
-                                if(b.lineRenderer == null) continue;
-                                
+                                if (b.lineRenderer == null) continue;
+
                                 if (!GeometryUtility.TestPlanesAABB(frustrumPlanes, b.lineRenderer.bounds)) continue;
 
                                 m_LineRenderer = b.lineRenderer;
                                 m_LineRenderer.SetPropertyBlock(props);
-                                
+
                                 if (b.bakedMesh == null) b.bakedMesh = new Mesh();
                                 m_LineRenderer.BakeMesh(b.bakedMesh, renderingData.cameraData.camera, false);
 
                                 cmd.DrawMesh(b.bakedMesh, m_LineRenderer.useWorldSpace ? Matrix4x4.identity : m_LineRenderer.transform.localToWorldMatrix, GrassBenderBase.TrailMaterial, 0, 0, props);
-                                
+
                                 //Again, flickers in scene view
                                 //cmd.DrawRenderer(b.lineRenderer, GrassBenderBase.TrailMaterial, 0, 0);
                             }
@@ -187,7 +186,7 @@ namespace StylizedGrass
                     {
                         cmd.SetGlobalTexture(bendMapInputID, BuiltinRenderTextureType.CurrentActive);
                         cmd.Blit(BuiltinRenderTextureType.CurrentActive, bendVectorID, m_MaskMat);
-                        
+
                     }
                 }
                 context.ExecuteCommandBuffer(cmd);
@@ -204,7 +203,7 @@ namespace StylizedGrass
                 cmd.ReleaseTemporaryRT(bendVectorID);
             }
         }
-        
+
         public override void Create()
         {
             m_ScriptablePass = new DrawGrassBendersPass();
@@ -221,4 +220,4 @@ namespace StylizedGrass
         }
     }
 #endif
-        }
+}

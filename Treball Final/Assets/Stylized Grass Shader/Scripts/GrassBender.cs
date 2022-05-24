@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace StylizedGrass
 {
@@ -54,7 +51,7 @@ namespace StylizedGrass
         public ParticleSystemRenderer particleRenderer;
         public bool hasParticleTrails;
         public ParticleSystem.ColorOverLifetimeModule psGrad;
-        
+
         //Line
         public LineRenderer lineRenderer;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -80,7 +79,7 @@ namespace StylizedGrass
                 EditorGUILayout.PropertyField(followSceneCamera);
                 EditorGUILayout.PropertyField(followTarget);
                 EditorGUILayout.Space();
-                
+
                 EditorGUILayout.LabelField(new GUIContent("Active grass benders (" + StylizedGrassRenderer.benderCount + ")"), EditorStyles.boldLabel);
 
                 benderScrollPos = EditorGUILayout.BeginScrollView(benderScrollPos, StylizedGrassGUI.ParameterGroup.Section, GUILayout.MaxHeight(150f));
@@ -93,7 +92,7 @@ namespace StylizedGrass
 
                     foreach (KeyValuePair<int, List<GrassBender>> layer in StylizedGrassRenderer.GrassBenders)
                     {
-                        if(StylizedGrassRenderer.GrassBenders.Count > 1) EditorGUILayout.LabelField("Layer " + layer.Key, EditorStyles.boldLabel);
+                        if (StylizedGrassRenderer.GrassBenders.Count > 1) EditorGUILayout.LabelField("Layer " + layer.Key, EditorStyles.boldLabel);
                         foreach (GrassBender bender in layer.Value)
                         {
                             var rect = EditorGUILayout.BeginHorizontal();

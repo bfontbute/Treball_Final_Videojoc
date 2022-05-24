@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +11,7 @@ public class Player3 : MonoBehaviour
     private const string IsMovingBool = "IsMoving";
     public Animator anim;
 
-    [Header ("Player")]
+    [Header("Player")]
     public float speed;
     public float rotationSpeed;
     public float jumpSpeed;
@@ -23,7 +21,9 @@ public class Player3 : MonoBehaviour
     private float ySpeed;
     private float originalStepOffset;
 
-    
+    public static Vector3 lastCeckPointPos = new Vector3 (55, 5, 16);
+
+
 
     [SerializeField] private float jumpButtonGracePeriod;
 
@@ -39,7 +39,11 @@ public class Player3 : MonoBehaviour
 
     [Header("PLayerStats")]
     int GearPoints = 0;
-    public Text TextGearPoints; 
+    public Text TextGearPoints;
+
+    int Health = 3;
+    public Text TextHealth;
+
 
     void Start()
     {
@@ -133,7 +137,7 @@ public class Player3 : MonoBehaviour
             {
                 anim.SetBool(IsJumpingBool, true);
             }
-            
+
         }
 
         Vector3 velocity = movementDirection * magnitude;
@@ -166,6 +170,16 @@ public class Player3 : MonoBehaviour
             Destroy(other.gameObject);
             Gears();
         }
+
+        if (other.gameObject.layer == 7)
+        {
+            HealthLoose();
+        }
+
+        if (other.gameObject.layer == 10)
+        {
+            HealthPlus();
+        }
     }
 
 
@@ -175,7 +189,7 @@ public class Player3 : MonoBehaviour
     {
         GearPoints += 1;
         TextGearPoints.text = GearPoints.ToString();
-        
+
     }
 
 
@@ -190,4 +204,31 @@ public class Player3 : MonoBehaviour
 
 
     }
+
+    //-------------------------------------------Vides------------------------------------------------------//
+
+    //Layer 7
+    public void HealthLoose()
+    {
+
+        if (Health == 0)
+        {
+
+        }
+        else
+        {
+            Health -= 1;
+            TextHealth.text = Health.ToString();
+            GameObject.FindGameObjectWithTag("Player").transform.position = lastCeckPointPos;
+
+        }
+    }
+    public void HealthPlus()
+    {
+        Health += 1;
+        TextHealth.text = Health.ToString();
+
+    }
+
+
 }

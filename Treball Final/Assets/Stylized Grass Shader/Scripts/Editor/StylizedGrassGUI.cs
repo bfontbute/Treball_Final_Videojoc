@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEditor.AnimatedValues;
 using UnityEditor.Rendering;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace StylizedGrass
 {
@@ -17,11 +15,11 @@ namespace StylizedGrass
         {
             get
             {
-                if(m_AssetIcon == null) m_AssetIcon = CreateIcon(AssetIconData);
+                if (m_AssetIcon == null) m_AssetIcon = CreateIcon(AssetIconData);
                 return m_AssetIcon;
             }
         }
-        
+
         private static Texture CreateIcon(string data)
         {
             byte[] bytes = System.Convert.FromBase64String(data);
@@ -31,7 +29,7 @@ namespace StylizedGrass
             return icon;
         }
 
-        
+
         private static GUIStyle _Header;
         public static GUIStyle Header
         {
@@ -196,7 +194,7 @@ namespace StylizedGrass
                 isExpanded = GUI.Toggle(foldoutRect, isExpanded, new GUIContent(isExpanded ? "−" : "≡"), EditorStyles.boldLabel);
 
                 // Context menu
-                #if URP
+#if URP
                 var menuIcon = CoreEditorStyles.paneOptionsIcon;
 #else
                 Texture menuIcon = null;
@@ -316,7 +314,7 @@ namespace StylizedGrass
                 }
             }
         }
-        
+
         public class ParameterGroup
         {
             static ParameterGroup()

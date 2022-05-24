@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
@@ -206,7 +204,7 @@ namespace StylizedGrass
                 {
                     resIdx.intValue = EditorGUILayout.Popup("Resolution", resIdx.intValue, ColorMapEditor.reslist, GUILayout.MaxWidth(EditorGUIUtility.labelWidth + 100f));
                 }
-                
+
                 EditorGUILayout.Space();
 
                 if (GUILayout.Button("- Render -", GUILayout.Height(30f)))
@@ -370,7 +368,7 @@ namespace StylizedGrass
             previewColor = GUI.Toggle(btnRect, previewColor, new GUIContent("Color"), "Button");
             btnRect.x += 49f;
             previewColor = !GUI.Toggle(btnRect, !previewColor, new GUIContent("Scale"), "Button");
-            
+
             GUI.Label(new Rect(r.width * 0.5f - (175 * 0.5f), r.height - 5, 175, 25), string.Format("{0} texel(s) per meter", ColorMapEditor.GetTexelSize(script.colorMap.texture.height, script.colorMap.bounds.size.x)), EditorStyles.toolbarButton);
         }
 

@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 #if URP
-using UnityEngine.Rendering.Universal;
 #endif
 
 namespace StylizedGrass
@@ -66,7 +65,7 @@ namespace StylizedGrass
             }
 
         }
-        
+
         [MenuItem("CONTEXT/LineRenderer/Attach grass bender")]
         public static void ConvertLineToBender(MenuCommand cmd)
         {

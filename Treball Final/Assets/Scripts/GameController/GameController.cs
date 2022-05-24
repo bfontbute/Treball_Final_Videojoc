@@ -1,17 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;               // Included to modify Unity UI components
-using UnityEngine.SceneManagement;  // Included to load into different scenes
 
 
 public class GameController : MonoBehaviour
 {
-    
+
     public static GameController instance;
 
-    
+
     // Public Text components we set in the Unity Inspector
     public Text timeCounter, countdownText;
 
@@ -41,7 +39,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
 
-        
+
         // Initialize the time counter UI
         timeCounter.text = "00:00.00";
 
@@ -72,7 +70,7 @@ public class GameController : MonoBehaviour
             // Generate a TimeSpan from the number of seconds the game has been going on for
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
 
-            
+
             // Example format - 01:23.45
             string timePlayingStr = timePlaying.ToString("mm':'ss':'ff");
 
@@ -83,17 +81,17 @@ public class GameController : MonoBehaviour
 
     //private void EndGame()
     //{
-        
-        //gamePlaying = false;
 
-        //Invoke("ShowGameOverScreen", 1.25f);
+    //gamePlaying = false;
+
+    //Invoke("ShowGameOverScreen", 1.25f);
     //
     IEnumerator CountdownToStart()
     {
         // While the countdown time is greater than zero...
         while (countdownTime > 0)
         {
-            
+
             countdownText.text = countdownTime.ToString();
 
             yield return new WaitForSeconds(1f);
