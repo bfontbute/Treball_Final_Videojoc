@@ -65,13 +65,19 @@ MonoBehaviour:
     roll: 0
   - position: {x: 0, y: 3.1932616, z: 48.39395}
     roll: 0
-  - position: {x: 0, y: 2.880549, z: 55}
+  - position: {x: 1.7281151, y: 2.8805487, z: 63.30556}
     roll: 0
-  - position: {x: 0, y: 2.5678363, z: 61.60605}
+  - position: {x: 3.4562302, y: 2.5678358, z: 81.5}
     roll: 0
-  - position: {x: 0, y: 2.4, z: 68.2121}
+  - position: {x: 5.1843452, y: 2.255123, z: 100.6}
     roll: 0
-  - position: {x: 0, y: 2.4, z: 74.818146}
+  - position: {x: 6.9124603, y: 1.94241, z: 120.5}
+    roll: 0
+  - position: {x: 8.640575, y: 1.6296971, z: 135.1}
+    roll: 0
+  - position: {x: 10.3686905, y: 1.3169842, z: 155.6}
+    roll: 0
+  - position: {x: 12.096806, y: 1.0042713, z: 174}
     roll: 0
 --- !u!1 &6161908532598893025
 GameObject:
