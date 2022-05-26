@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 
 
         // Initialize the time counter UI
-        timeCounter.text = "00:00.00";
+        timeCounter.text = "03:00.00";
 
         // Game is set to false until countdown completes
         gamePlaying = false;
