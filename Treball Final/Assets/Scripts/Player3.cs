@@ -182,7 +182,6 @@ public class Player3 : MonoBehaviour
         if (other.gameObject.layer == 10)
         {
             Destroy(other.gameObject);
-            
             HealthPlus();
         }
     }
