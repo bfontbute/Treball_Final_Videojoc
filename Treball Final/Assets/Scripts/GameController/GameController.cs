@@ -5,10 +5,12 @@ using UnityEngine.UI;               // Included to modify Unity UI components
 
 
 public class GameController : MonoBehaviour
+
 {
 
     public static GameController instance;
-
+    public AudioSource OST;
+    public AudioSource Gift_SFX;
 
     // Public Text components we set in the Unity Inspector
     public Text timeCounter, countdownText;
@@ -57,6 +59,8 @@ public class GameController : MonoBehaviour
 
         // Sets the time the game began playing
         startTime = Time.time;
+
+        PlayOST();
     }
 
     private void Update()
@@ -79,13 +83,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //private void EndGame()
-    //{
-
-    //gamePlaying = false;
-
-    //Invoke("ShowGameOverScreen", 1.25f);
-    //
+  
     IEnumerator CountdownToStart()
     {
         // While the countdown time is greater than zero...
@@ -113,4 +111,8 @@ public class GameController : MonoBehaviour
         countdownText.gameObject.SetActive(false);
     }
 
+    public void PlayOST()
+    {
+        OST.Play ();
+    }
 }
