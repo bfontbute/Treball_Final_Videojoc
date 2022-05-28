@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player3 : MonoBehaviour
 {
+
     [Header("Animation")]
     private const string IsFallingBool = "IsFalling";
     private const string IsGroundedBool = "IsGrounded";
