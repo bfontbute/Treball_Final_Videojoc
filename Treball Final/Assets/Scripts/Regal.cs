@@ -26,6 +26,7 @@ public class Regal : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             Hit.SetActive(true);
+
         }
     }
 }
