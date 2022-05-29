@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
     public AudioSource OST;
-    public AudioSource Gift_SFX;
+    
 
     // Public Text components we set in the Unity Inspector
     public Text timeCounter, countdownText;
@@ -33,8 +33,6 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        // Assigns this object to the public static instance (singleton)
-        // See the MusicController.cs for a better implementation of a singleton
         instance = this;
     }
 
@@ -86,7 +84,7 @@ public class GameController : MonoBehaviour
   
     IEnumerator CountdownToStart()
     {
-        // While the countdown time is greater than zero...
+        
         while (countdownTime > 0)
         {
 
@@ -94,20 +92,20 @@ public class GameController : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            // Decrement the countdown time integer by 1
+            
             countdownTime--;
         }
 
-        // Once the countdown timer reaches 0, call the BeginGame() fucntion
+        
         BeginGame();
 
-        // Sets the countdown UI to "GO!"
+        
         countdownText.text = "GO!";
 
-        // Return in exactly 1 second
+        
         yield return new WaitForSeconds(1f);
 
-        // Disable the countdown UI to hid the "GO!" text
+        
         countdownText.gameObject.SetActive(false);
     }
 

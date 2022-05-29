@@ -6,6 +6,7 @@ public class Regal : MonoBehaviour
 {
     public GameObject Hit;
     private Vector3 PositionRegalo;
+    public AudioSource Gift_SFX;
 
 
 
@@ -26,7 +27,16 @@ public class Regal : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             Hit.SetActive(true);
+<<<<<<< HEAD
 
+=======
+            PlayGift();
+>>>>>>> origin/Mio
         }
+    }
+
+    public void PlayGift()
+    {
+        Gift_SFX.Play ();
     }
 }
