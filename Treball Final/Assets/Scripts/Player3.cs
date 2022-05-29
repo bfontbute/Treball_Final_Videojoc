@@ -26,6 +26,8 @@ public class Player3 : MonoBehaviour
     private float ySpeed;
     private float originalStepOffset;
 
+
+    [SerializeField]
     public static Vector3 lastCeckPointPos = new Vector3(55, 5, 16);
 
 
@@ -44,14 +46,17 @@ public class Player3 : MonoBehaviour
 
     [Header("PLayerStats")]
     int GearPoints = 0;
-    public Text TextGearPoints;
+    [SerializeField]
+    private Text TextGearPoints;
 
     int Health = 3;
-    public Text TextHealth;
+    [SerializeField]
+    private Text TextHealth;
 
 
     void Start()
     {
+         
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
         anim = GetComponentInChildren<Animator>();
@@ -76,11 +81,7 @@ public class Player3 : MonoBehaviour
         {
             lastGroundedTime = Time.time;
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                jumpButtonPressedTime = Time.time;
-                DobleJump = true;
-            }
+            Jumping();
 
         }
 
@@ -134,6 +135,14 @@ public class Player3 : MonoBehaviour
             Falling();
         }
 
+        void Jumping()
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpButtonPressedTime = Time.time;
+                DobleJump = true;
+            }
+        }
 
         void Falling()
         {
