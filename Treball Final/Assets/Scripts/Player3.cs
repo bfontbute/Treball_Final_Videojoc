@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player3 : MonoBehaviour
 {
+    public AudioSource Coin_SFX;
 
     [Header("Animation")]
     private const string IsFallingBool = "IsFalling";
@@ -173,6 +174,7 @@ public class Player3 : MonoBehaviour
         {
             Destroy(other.gameObject);
             Gears();
+            PlayCoin();
         }
 
         if (other.gameObject.layer == 7)
@@ -185,6 +187,11 @@ public class Player3 : MonoBehaviour
             Destroy(other.gameObject);
             HealthPlus();
         }
+    }
+
+    public void PlayCoin()
+    {
+        Coin_SFX.Play ();
     }
 
 
