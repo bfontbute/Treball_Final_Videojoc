@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public GameObject Panel1;
-    public GameObject Panel2;
-    public AudioSource MenuSFX;
-    public AudioSource Button_sfx;
+    [SerializeField]
+    private GameObject Panel1;
+    [SerializeField]
+    private GameObject Panel2;
+    [SerializeField]
+    private AudioSource MenuSFX;
+    [SerializeField]
+    private AudioSource Button_sfx;
 
     public void NewGame()
     {

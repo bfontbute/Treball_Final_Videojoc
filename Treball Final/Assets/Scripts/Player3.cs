@@ -116,7 +116,6 @@ public class Player3 : MonoBehaviour
             characterController.stepOffset = 0;
             anim.SetBool(IsGroundedBool, false);
             isGrounded = false;
-            Debug.Log(isGrounded);
 
             if (Input.GetButtonDown("Jump") && DobleJump == true)
             {

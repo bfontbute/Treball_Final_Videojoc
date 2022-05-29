@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform[] waypoints;
+    [SerializeField]
+    private Transform[] waypoints;
     int current;
-    public float speed;
+    [SerializeField]
+    private float speed;
 
 
     void Start()

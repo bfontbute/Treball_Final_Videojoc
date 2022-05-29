@@ -63,7 +63,6 @@
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Player3.cs" />
-    <Compile Include="Assets\Scripts\GameController\TimerController.cs" />
     <Compile Include="Assets\Scripts\Regal.cs" />
     <Compile Include="Assets\Stylized Grass Shader\_Demo\DemoAssets\Scripts\MoveInCircle.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />

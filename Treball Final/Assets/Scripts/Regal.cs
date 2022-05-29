@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Regal : MonoBehaviour
 {
-    public GameObject Hit;
+    [SerializeField]
+    private GameObject Hit;
     private Vector3 PositionRegalo;
-    public AudioSource Gift_SFX;
+    [SerializeField]
+    private AudioSource Gift_SFX;
 
 
 
